@@ -20,8 +20,12 @@ fn main() {
 	else {
 		match os.args[1] {
 			"up" {
-				if os.args.len > 3 {
-					run("git commit -m '${os.args[2]}'")
+				if os.args.len > 2 {
+					mut message := ""
+					for i := 2; i < os.args.len; i++ {
+						message += os.args[i] + " "
+					}
+					run("git commit -m '${message}'")
 				}
 				else {
 					run("git commit -m 'updates'")
