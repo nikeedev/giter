@@ -31,11 +31,14 @@ fn main() {
 					run("git commit -m 'updates'")
 				}
 			}
+			"save" {
+				run("git commit -m 'save'")
+			}
 			"addl" {
 				run("git add -A")
 			}
 			else {
-				println("giter: commmand-line helper for git - version 0.1.0-dev")
+				println("giter: ${os.args[1]} not recognized as a command")
 				println("Usage: giter [command] [arguments]")
 			}
 		}
