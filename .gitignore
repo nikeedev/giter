@@ -24,3 +24,8 @@ bin/
 *.js
 
 test_git/
+
+
+# Added by cargo
+
+/target
