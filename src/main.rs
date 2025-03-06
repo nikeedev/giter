@@ -10,7 +10,12 @@ fn run(command: &str, args: &str) {
     if output.status.code().unwrap() == 0 {
         println!("Done!");
     } else {
-        println!("Error doing it (error code: {}), please run git commands on your own to debug the problem", output.status.code().unwrap());
+        println!(
+            "Error doing it (error code: {}), please run git commands on your own to debug the problem",
+            output.status.code().unwrap()
+        );
+        println!("error: {}", String::from_utf8(output.stderr).unwrap().as_str());
+        println!("info: {}", String::from_utf8(output.stdout).unwrap().as_str());
     }
 }
 
@@ -18,9 +23,11 @@ fn main() {
     let args = env::args().collect::<Vec<String>>();
 
     if args.len() < 2 {
-        println!("giter: commmand-line helper for git - version 1.0.0");
+        println!("giter: commmand-line helper for git - version 1.1.0");
         println!("Usage: giter [command] [arguments]");
-        println!("\nCommands:\nup - does `git commit -m \"updates\"`, or custom message if passed after up command\nsave - commit using \"save\" comment\naddl - stage all files to git\ndall - nikee's setup, stage files, commit, pull, push\npush - push\npull - pull");
+        println!(
+            "\nCommands:\nup - does `git commit -m \"updates\"`, or custom message if passed after up command\nsave - commit using \"save\" comment\naddl - stage all files to git\ndall - nikee's setup, stage files, commit, pull, push\npush - push\npull - pull"
+        );
         exit(0);
     }
     match args[1].as_str() {
@@ -39,7 +46,7 @@ fn main() {
         }
 
         "dall" => {
-            run("git",  "add -A");
+            run("git", "add -A");
             run("git", "commit -m 'updates'");
             run("git", "pull");
             run("git", "push");
@@ -52,7 +59,7 @@ fn main() {
             run("git", "add -A");
         }
         "push" => {
-            run("git",  "push");
+            run("git", "push");
         }
         "fetch" => {
             run("git", "pull");
@@ -60,7 +67,9 @@ fn main() {
         _ => {
             println!("giter: {} not recognized as a command", args[1]);
             println!("Usage: giter [command] [arguments]");
-            println!("\nCommands:\nup - does `git commit -m \"updates\"`, or custom message if passed after up command\nsave - commit using \"save\" comment\naddl - stage all files to git\ndall - nikee's setup, stage files, commit, pull, push\npush - push\npull - pull");
+            println!(
+                "\nCommands:\nup - does `git commit -m \"updates\"`, or custom message if passed after up command\nsave - commit using \"save\" comment\naddl - stage all files to git\ndall - nikee's setup, stage files, commit, pull, push\npush - push\npull - pull"
+            );
             exit(1);
         }
     }
