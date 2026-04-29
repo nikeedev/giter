@@ -2,7 +2,7 @@ use std::process::Command;
 use std::{env, process::exit};
 
 fn run(command: &str, args: &str) {
-    println!("{} {}", command, args);
+    // println!("{} {}", command, args);
     let output = Command::new(command)
         .args(args.split("@1"))
         .output()
