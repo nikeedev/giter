@@ -51,7 +51,7 @@ fn main() {
         }
 
         "dall" => { 
-            println!("\"dall'ing\"...");
+            println!("dall'ing...");
 
             run("git", "add@1-A");
             run("git", "commit@1-m@1'update'");
