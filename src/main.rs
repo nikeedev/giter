@@ -41,6 +41,7 @@ fn main() {
                 
                 for i in args.iter().skip(2) {
                     message.push_str(i.as_str());
+                    message.push_str(" ");
                 }
 
                 // println!("git {}", format!("commit -m '{}'", message).as_str());
